@@ -1,0 +1,66 @@
+{
+  "key": "group_rbm_student_details",
+  "title": "Red Barn Music Student Details",
+  "fields": [
+    { "key": "field_rbm_student_first_name", "label": "Student First Name", "name": "_rbm_student_first_name", "type": "text" },
+    { "key": "field_rbm_student_last_name", "label": "Student Last Name", "name": "_rbm_student_last_name", "type": "text" },
+    { "key": "field_rbm_student_email", "label": "Student Email", "name": "_rbm_student_email", "type": "email" },
+    { "key": "field_rbm_student_phone", "label": "Student Phone", "name": "_rbm_student_phone", "type": "text" },
+    { "key": "field_rbm_student_dob", "label": "Student Date of Birth", "name": "_rbm_student_dob", "type": "date_picker", "return_format": "Y-m-d", "display_format": "m/d/Y" },
+    { "key": "field_rbm_student_age", "label": "Student Age", "name": "_rbm_student_age", "type": "number" },
+
+    { "key": "field_rbm_parent_first_name", "label": "Parent First Name", "name": "_rbm_parent_first_name", "type": "text" },
+    { "key": "field_rbm_parent_last_name", "label": "Parent Last Name", "name": "_rbm_parent_last_name", "type": "text" },
+    { "key": "field_rbm_parent_email", "label": "Parent Email", "name": "_rbm_parent_email", "type": "email" },
+    { "key": "field_rbm_parent_phone", "label": "Parent Phone", "name": "_rbm_parent_phone", "type": "text" },
+
+    { "key": "field_rbm_second_guardian_first_name", "label": "Second Guardian First Name", "name": "_rbm_second_guardian_first_name", "type": "text" },
+    { "key": "field_rbm_second_guardian_last_name", "label": "Second Guardian Last Name", "name": "_rbm_second_guardian_last_name", "type": "text" },
+    { "key": "field_rbm_second_guardian_phone", "label": "Second Guardian Phone", "name": "_rbm_second_guardian_phone", "type": "text" },
+
+    { "key": "field_rbm_preferred_instruments", "label": "Preferred Instrument(s)", "name": "_rbm_preferred_instruments", "type": "text" },
+    { "key": "field_rbm_preferred_days_of_week", "label": "Preferred Day(s) of Week", "name": "_rbm_preferred_days_of_week", "type": "text" },
+
+    { "key": "field_rbm_preferred_contact_method", "label": "Preferred Contact Method", "name": "_rbm_preferred_contact_method", "type": "select",
+      "choices": { "email": "Email", "phone": "Phone", "text": "Text" } },
+
+    { "key": "field_rbm_media_release", "label": "Media Release", "name": "_rbm_media_release", "type": "true_false", "ui": 1, "default_value": 0 },
+
+    { "key": "field_rbm_student_notes", "label": "Student Notes", "name": "_rbm_student_notes", "type": "textarea" },
+    { "key": "field_rbm_comments", "label": "Comments", "name": "_rbm_comments", "type": "textarea" },
+
+    { "key": "field_rbm_student_status", "label": "Student Status", "name": "_rbm_student_status", "type": "select",
+      "choices": { "pending": "Pending", "approved": "Approved", "active": "Active", "inactive": "Inactive" },
+      "default_value": "pending" },
+
+    { "key": "field_rbm_student_active", "label": "Active Student", "name": "_rbm_student_active", "type": "true_false", "ui": 1, "default_value": 1 },
+
+    { "key": "field_rbm_student_instrument", "label": "Assigned Instrument", "name": "_rbm_student_instrument", "type": "text" },
+
+    { "key": "field_rbm_lesson_day_of_week", "label": "Lesson Day of Week", "name": "_rbm_lesson_day_of_week", "type": "select",
+      "choices": { "TBD": "TBD", "MON": "MON", "TUE": "TUE", "WED": "WED", "THU": "THU", "FRI": "FRI", "SAT": "SAT", "SUN": "SUN" },
+      "default_value": "TBD" },
+
+    { "key": "field_rbm_lesson_time", "label": "Lesson Time", "name": "_rbm_lesson_time", "type": "text", "default_value": "TBD" },
+
+    { "key": "field_rbm_lesson_room", "label": "Lesson Room", "name": "_rbm_lesson_room", "type": "text", "default_value": "TBD" },
+
+    { "key": "field_rbm_teacher", "label": "Teacher", "name": "_rbm_teacher", "type": "text", "default_value": "TBD" },
+
+    { "key": "field_rbm_newsletter_opt_in", "label": "Newsletter Opt-in", "name": "_rbm_newsletter_opt_in", "type": "true_false", "ui": 1, "default_value": 0 },
+
+    { "key": "field_rbm_submission_type", "label": "Submission Type", "name": "_rbm_submission_type", "type": "text" },
+
+    { "key": "field_rbm_record_date", "label": "Record Date", "name": "_rbm_record_date", "type": "date_time_picker",
+      "display_format": "m/d/Y g:i A", "return_format": "Y-m-d H:i:s" }
+  ],
+  "location": [[{ "param": "post_type", "operator": "==", "value": "rbm_student" }]],
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 1
+}

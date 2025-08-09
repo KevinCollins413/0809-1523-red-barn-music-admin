@@ -1,0 +1,81 @@
+<?php
+declare(strict_types=1);
+
+namespace RedBarnMusic\Admin\Pages;
+
+use RedBarnMusic\Admin\Interfaces\ComponentInterface;
+
+defined('ABSPATH') || exit;
+
+class AdminPageStudentAddEdit implements ComponentInterface {
+    public function register(): void {
+        // Submenu under the Student CPT
+        add_submenu_page(
+            'edit.php?post_type=student',
+            'Add New Student',
+            'Add New',
+            'manage_options',
+            'rbm-students-add',
+            [ $this, 'render' ]
+        );
+    }
+
+    public function render(): void {
+        // Grab the composite slot_id, e.g. "TBD_1300_R1"
+        $slot_id = sanitize_text_field( $_GET['slot_id'] ?? '' );
+
+        echo '<div class="wrap">';
+        echo '<h1>' . ( $slot_id ? 'Assign Student to Slot' : 'Add/Edit Student' ) . '</h1>';
+        echo '<form method="post">';
+
+        // Render each ACF field by its field_name
+        // (requires ACF Pro or Free + acf_render_fields)
+        if ( function_exists('acf_render_fields') ) {
+            acf_render_fields( get_the_ID(), [
+                'field_day_of_week',
+                'field_time_slot',
+                'field_room',
+                'field_teacher',
+                'field_lesson_length',
+                'field_first_name',
+                'field_last_name',
+                'field_admin_notes',
+            ] );
+        } else {
+            // Fallback: you could output plain <select> or <input> here
+            echo '<p><em>ACF is not active; fields cannot render.</em></p>';
+        }
+
+        echo '<p><input type="submit" class="button button-primary" value="Save Student"></p>';
+        echo '</form>';
+        echo '</div>';
+
+        // If we have a slot_id, parse it and prefill the three selects via JS
+        if ( $slot_id && strpos($slot_id, '_') !== false ) {
+            list( $day, $time, $room ) = explode( '_', $slot_id );
+            $day_js  = esc_js( $day );
+            $time_js = esc_js( $time );
+            $room_js = esc_js( $room );
+            ?>
+            <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                // ACF fields
+                if ( window.acf && acf.getField ) {
+                    acf.getField('field_day_of_week').$input.val('<?php echo $day_js;?>').trigger('change');
+                    acf.getField('field_time_slot').$input.val('<?php echo $time_js;?>').trigger('change');
+                    acf.getField('field_room').$input.val('<?php echo $room_js;?>').trigger('change');
+                } else {
+                    // Fallback to native selects if rendered manually
+                    var d = document.querySelector('select[name="acf[field_day_of_week]"]');
+                    if (d) d.value = '<?php echo $day_js;?>';
+                    var t = document.querySelector('select[name="acf[field_time_slot]"]');
+                    if (t) t.value = '<?php echo $time_js;?>';
+                    var r = document.querySelector('select[name="acf[field_room]"]');
+                    if (r) r.value = '<?php echo $room_js;?>';
+                }
+            });
+            </script>
+            <?php
+        }
+    }
+}
